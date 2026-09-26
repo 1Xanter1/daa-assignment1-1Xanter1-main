@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Random;
+
 public class Problem1 {
     public int countFreqBrute(int key, int [] A){
         int res = 0;
@@ -58,9 +61,36 @@ public class Problem1 {
 
 
     static void main() {
-        int[] A = {1,1,1,2,2,2,2,2,2,4,4,4,5,5,5,5};
         Problem1 p = new Problem1();
-//        System.out.println(p.countFreqBrute(3, A));
-        System.out.println(p.countFreqSmart(5, A));
+
+        int n = 10_000_000;
+        int[] A = new int[n];
+
+        Random random = new Random();
+
+        for (int i = 0; i < n; i++) {
+            A[i] = random.nextInt(1_000_000);
+        }
+
+        Arrays.sort(A);
+
+        int key = 500_000;
+
+        long startBrute = System.nanoTime();
+        int resultBrute = p.countFreqBrute(key, A);
+        long endBrute = System.nanoTime();
+
+        long startSmart = System.nanoTime();
+        int resultSmart = p.countFreqSmart(key, A);
+        long endSmart = System.nanoTime();
+
+        long bruteTime = endBrute - startBrute;
+        long smartTime = endSmart - startSmart;
+
+        System.out.println("Brute result: " + resultBrute);
+        System.out.println("Smart result: " + resultSmart);
+
+        System.out.println("Brute-force time: " + bruteTime + " ns");
+        System.out.println("Smart time: " + smartTime + " ns");
     }
 }
