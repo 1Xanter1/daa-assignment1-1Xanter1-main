@@ -63,18 +63,18 @@ public class Problem1 {
     static void main() {
         Problem1 p = new Problem1();
 
-        int n = 10_000_000;
+        int n = 100000000;
         int[] A = new int[n];
 
         Random random = new Random();
 
         for (int i = 0; i < n; i++) {
-            A[i] = random.nextInt(1_000_000);
+            A[i] = random.nextInt(1000000);
         }
 
         Arrays.sort(A);
 
-        int key = 500_000;
+        int key = 500000;
 
         long startBrute = System.nanoTime();
         int resultBrute = p.countFreqBrute(key, A);
