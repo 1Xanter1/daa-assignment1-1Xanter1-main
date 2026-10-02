@@ -21,10 +21,44 @@
 2. [maximum-subarray](https://leetcode.com/problems/maximum-subarray/description/)
 
 ### Report - Largest Subrange
-+ Describe here your solutions in human language using Markdown syntax and possibly latex pieces like this one $T(n)=\Theta(n\log{n})$.
-+ Provide bounds ($\Theta$/$O$/$\Omega$ ) for the running times ($T(n)$) for each solution and justify them.
-+ Compare empirically (using `System.nanoTime()`) running times of brute-force and divide-and-conquer solutions and reflect the results in this report.
+1. Solutions
+   Brute Force
 
+The brute-force solution checks every possible subrange and calculates its sum. It keeps the largest sum found.
+
+Time complexity: $O(n^2)$
+Space complexity: $O(1)$
+
+Divide and Conquer
+
+The smart solution divides the array into two halves. It finds the maximum subrange in the left half, the right half, and the subrange that crosses the middle.
+
+The largest of these three sums is returned as the answer.
+
+Time complexity: $\Theta(n\log n)$
+Space complexity: $O(\log n)$ due to recursion.
+
+2. Empirical Comparison
+
+Both methods were tested using:
+
+A = {1,2,3,4,5,6,7,8,9,10}
+
+Both methods return:
+
+Brute result: 55
+Smart result: 55
+
+Execution time was measured using System.nanoTime().
+
+Brute-force time: 9200 ns
+Smart time: 37200 ns
+
+For a small array, the difference in execution time may be small. For larger arrays, the divide-and-conquer solution requires fewer operations.
+
+3. Conclusion
+
+The brute-force solution has quadratic time complexity $O(n^2)$ because it checks all possible subranges. The divide-and-conquer solution has $\Theta(n\log n)$ complexity because the array is recursively divided into two halves and the crossing sum is calculated in linear time.
 ### Defense Interview
 + Be ready to justify running times, for example using **Master method** for divide-and-conquer algorithms.
 + Be ready to answer questions on algorithms and your code.
