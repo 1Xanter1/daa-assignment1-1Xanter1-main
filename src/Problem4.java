@@ -71,11 +71,15 @@ public class Problem4 {
 
     private double stripClosest(List<Point> strip, double dist){
         double min = dist;
-        strip.sort(Comparator.comparingDouble(point -> point.x));
+        strip.sort(Comparator.comparingDouble(point -> point.y));
 
         for(int i = 0 ; i < strip.size() ; i++){
             for(int j = i + 1; j < strip.size() && (strip.get(j).y -strip.get(i).y <min); j++){
-                double distance = distance(strip.get(i), strip.get(j));
+                double currentDistance = distance(strip.get(i), strip.get(j));
+
+                if (currentDistance < min) {
+                    min = currentDistance;
+                }
             }
             if(dist<min){
                 min = dist;
@@ -104,10 +108,6 @@ public class Problem4 {
     }
 
     static void main() {
-//        var solver = new Problem4();
-//        System.out.println(solver.minDistSmart(new double[][]{{0,0},{3,4},{5,-3}}));
-//        System.out.println(solver.minDistBrute(new double[][]{{0,0},{3,4},{5,-3}}));
-
         var solver = new Problem4();
         long startBrute = System.nanoTime();
         double resultBrute = solver.minDistBrute(new double[][]{{0,0},{3,4},{5,-3}});

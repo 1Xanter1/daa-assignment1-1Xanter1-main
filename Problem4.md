@@ -21,9 +21,46 @@
 2. Chapter 3.4, Algorithms Illuminated Part1, 2017 - Tim Roughgarden
 
 ### Report - Largest Subrange
-+ Describe here your solutions in human language using Markdown syntax and possibly latex pieces like this one $T(n)=\Theta(n\log{n})$.
-+ Provide bounds ($\Theta$/$O$/$\Omega$ ) for the running times ($T(n)$) for each solution and justify them.
-+ Compare empirically (using `System.nanoTime()`) running times of brute-force and divide-and-conquer solutions and reflect the results in this report.
+1. Solutions
+   Brute Force
+
+The brute-force solution checks every pair of points and calculates the Euclidean distance between them. It keeps the smallest distance found.
+
+Time complexity: $O(n^2)$
+Space complexity: $O(1)$
+
+Divide and Conquer
+
+The smart solution first sorts the points by their x-coordinate and divides them into two halves. It recursively finds the closest pair in each half and then checks points near the middle line to find a closer pair crossing the two halves.
+
+The smallest distance from the left half, right half, and middle strip is returned.
+
+Time complexity: $O(n\log^2 n)$
+Space complexity: $O(n)$
+
+The $O(n\log^2 n)$ complexity occurs because the points in the strip are sorted by their y-coordinate at each recursive level.
+
+2. Empirical Comparison
+
+Both methods were tested using:
+
+P = {{0,0}, {3,4}, {5,-3}}
+
+Both methods return the same minimum distance:
+
+Brute result: 5.0
+Smart result: 5.0
+
+Execution time was measured using System.nanoTime().
+
+Brute-force time: 27700 ns
+Smart time: 7161000 ns
+
+For a small number of points, the difference may be small. For larger arrays, the divide-and-conquer approach reduces the number of distance comparisons.
+
+3. Conclusion
+
+The brute-force solution has quadratic complexity $O(n^2)$ because it checks every pair of points. The divide-and-conquer solution is more efficient and has $O(n\log^2 n)$ complexity in the current implementation. Compare empirically (using `System.nanoTime()`) running times of brute-force and divide-and-conquer solutions and reflect the results in this report.
 
 ### Defense Interview
 + Be ready to justify running times, for example using **Master method** for divide-and-conquer algorithms.

@@ -21,10 +21,72 @@
 2. Chapter 1.3, Algorithms Illuminated Part1, 2017 - Tim Roughgarden
 
 ### Report - Largest Subrange
-+ Describe here your solutions in human language using Markdown syntax and possibly latex pieces like this one $T(n)=\Theta(n\log{n})$.
-+ Provide bounds ($\Theta$/$O$/$\Omega$ ) for the running times ($T(n)$) for each solution and justify them.
-+ Compare empirically (using `System.nanoTime()`) running times of brute-force and divide-and-conquer solutions and reflect the results in this report.
+1. Solutions
+   Brute Force
 
+The brute-force solution uses the standard multiplication algorithm. It multiplies each digit of the first number by each digit of the second number and stores the results in an integer array.
+
+Time complexity: $O(n^2)$
+Space complexity: $O(n)$
+
+Divide and Conquer
+
+The smart solution uses the Karatsuba algorithm. The numbers are split into two halves and three recursive multiplications are performed instead of four.
+
+For:
+
+$$
+A = A_L10^m + A_R
+$$
+
+and
+
+$$
+B = B_L10^m + B_R
+$$
+
+the algorithm calculates:
+
+$$
+z_1=A_LB_L,\quad z_2=A_RB_R
+$$
+
+$$
+z_3=(A_L+A_R)(B_L+B_R)
+$$
+
+Then the middle part is:
+
+$$
+z_3-z_1-z_2
+$$
+
+The final result is constructed using these three values.
+
+Time complexity: $O(n^{\log_2 3}) \approx O(n^{1.585})$
+Space complexity: $O(n)$
+
+2. Empirical Comparison
+
+Both methods were tested with:
+
+A = "12345678987654321"
+B = "98765432123456789"
+
+Both methods produced:
+
+1219326320073159566072245112635269
+
+Execution time was measured using System.nanoTime():
+
+Brute-force time: 181800 ns
+Smart time: 7464800 ns
+
+The brute-force method performs multiplication for every pair of digits, while Karatsuba reduces the number of recursive multiplications. The difference becomes more noticeable for larger numbers.
+
+3. Conclusion
+
+The brute-force solution has quadratic complexity $O(n^2)$. The Karatsuba divide-and-conquer solution has approximately $O(n^{1.585})$ complexity, making it more efficient for multiplying large integers represented as strings.
 ### Defense Interview
 + Be ready to justify running times, for example using **Master method** for divide-and-conquer algorithms.
 + Be ready to answer questions on algorithms and your code.
