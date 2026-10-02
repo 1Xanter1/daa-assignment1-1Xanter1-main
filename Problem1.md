@@ -26,9 +26,46 @@
 2. [find-first-and-last-position-of-element-in-sorted-array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/)
 
 ### Report - Number of Occurrences
-+ Describe here your solutions in human language using Markdown syntax and possibly latex pieces like this one $T(n)=\Theta(n\log{n})$.
-+ Provide bounds ($\Theta$/$O$/$\Omega$ ) for the running times ($T(n)$) for each solution and justify them.
-+ Compare empirically (using `System.nanoTime()`) running times of brute-force and divide-and-conquer solutions and reflect the results in this report.
+1. Solutions
+   Brute Force
+
+The brute-force solution checks every element of the array and counts how many elements are equal to the given key.
+
+Time complexity: $\Theta(n)$
+Space complexity: $O(1)$
+
+Divide and Conquer
+
+The smart solution uses two binary searches. leftBound() finds the first occurrence of the key, while rightBound() finds the last occurrence.
+
+The number of occurrences is calculated as:
+
+$$
+\text{count} = \text{rightBound} - \text{leftBound} + 1
+$$
+
+Time complexity: $\Theta(\log n)$
+Space complexity: $O(1)$
+
+2. Empirical Comparison
+
+For testing, an array of 100,000,000 random integers was generated and sorted. The key 500000 was searched using both methods. Execution time was measured with System.nanoTime().
+
+Example output:
+
+Brute result: 101
+
+Smart result: 101
+
+Brute-force time: 52135300 ns
+
+Smart time: 32300 ns
+
+Both methods return the same result. The smart solution is much faster for large arrays because it uses binary search instead of checking every element.
+
+3. Conclusion
+
+The brute-force method has linear complexity $\Theta(n)$, while the divide-and-conquer method has logarithmic complexity $\Theta(\log n)$. Therefore, the smart solution scales much better for large sorted arrays.
 
 ### Defense Interview 
 + Be ready to justify running times, for example using **Master method** for divide-and-conquer algorithms.
