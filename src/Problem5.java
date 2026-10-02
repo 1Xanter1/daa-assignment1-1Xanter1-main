@@ -3,8 +3,8 @@ import java.math.BigInteger;
 public class Problem5 {
     public String multBrute(String A, String B){
         int [] result = new int[A.length() + B.length()];
-        for(int i = 0; i < A.length(); i++){
-            for(int j = 0; j < B.length(); j++){
+        for(int i = A.length()-1; i >= 0; i--){
+            for(int j = B.length()-1; j >= 0; j--){
                 int numA = A.charAt(i) - '0';
                 int numB = B.charAt(j) - '0';
 
@@ -176,6 +176,22 @@ public class Problem5 {
         Problem5 p = new Problem5();
         String a = "12345678987654321";
         String b = "98765432123456789";
-        System.out.println(p.multSmart(a, b));
+
+        long startBrute = System.nanoTime();
+        String resultBrute = p.multBrute(a,b);
+        long endBrute = System.nanoTime();
+
+        long startSmart = System.nanoTime();
+        String resultSmart = p.multSmart(a, b);
+        long endSmart = System.nanoTime();
+
+        long bruteTime = endBrute - startBrute;
+        long smartTime = endSmart - startSmart;
+
+        System.out.println("Brute result: " + resultBrute);
+        System.out.println("Smart result: " + resultSmart);
+
+        System.out.println("Brute-force time: " + bruteTime + " ns");
+        System.out.println("Smart time: " + smartTime + " ns");
     }
 }
