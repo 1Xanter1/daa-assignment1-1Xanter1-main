@@ -90,13 +90,23 @@ public class Problem2 {
     }
 
     public static void main() {
-//        long startBrute = System.nanoTime();
-//        System.out.println(new Problem2().getMedianBrute(new int[]{2, 4}, new int[]{3}));
-//        long endBrute = System.nanoTime();
+        Problem2 p = new Problem2();
+        long startBrute = System.nanoTime();
+        double resultBrute = p.getMedianBrute(new int[]{2, 4}, new int[]{3});
+        long endBrute = System.nanoTime();
 
         long startSmart = System.nanoTime();
-        System.out.println(new Problem2().getMedianSmart(new int[]{2, 4}, new int[]{3}));
+        double resultSmart = p.getMedianSmart(new int[]{2, 4}, new int[]{3});
         long endSmart = System.nanoTime();
+
+        long bruteTime = endBrute - startBrute;
+        long smartTime = endSmart - startSmart;
+
+        System.out.println("Brute result: " + resultBrute);
+        System.out.println("Smart result: " + resultSmart);
+
+        System.out.println("Brute-force time: " + bruteTime + " ns");
+        System.out.println("Smart time: " + smartTime + " ns");
 
     }
 }

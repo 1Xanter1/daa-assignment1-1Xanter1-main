@@ -27,10 +27,47 @@
 2. [median-of-two-sorted-arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)
 
 ### Report - Median of Two Sorted Arrays
-+ Describe here your solutions in human language using Markdown syntax and possibly latex pieces like this one $T(n)=\Theta(n\log{n})$.
-+ Provide bounds ($\Theta$/$O$/$\Omega$ ) for the running times ($T(n)$) for each solution and justify them.
-+ Compare empirically (using `System.nanoTime()`) running times of brute-force and divide-and-conquer solutions and reflect the results in this report.
+1. Solutions
+   Brute Force
 
+The brute-force solution combines the two sorted arrays into one array and sorts it. Then it finds the middle element or the average of the two middle elements.
+
+Time complexity: $O((m+n)\log(m+n))$
+Space complexity: $O(m+n)$
+
+Divide and Conquer
+
+The smart solution uses binary search to find the correct partition between the two sorted arrays. It searches for a partition where all elements on the left are smaller than all elements on the right.
+
+If the total length is even, the median is the average of the largest left element and the smallest right element. Otherwise, the median is the largest element on the left.
+
+Time complexity: $O(\log(\min(m,n)))$
+Space complexity: $O(1)$
+
+2. Empirical Comparison
+
+Both methods were tested using the arrays:
+
+A = {2, 4}
+B = {3}
+
+Both methods returned:
+
+Brute result: 3.0
+Smart result: 3.0
+
+
+Execution time was measured using System.nanoTime().
+
+Brute-force time: 3000500 ns
+
+Smart time: 93500 ns
+
+For small arrays, the time difference may be small because of Java's method-call and sorting overhead. For larger arrays, the binary-search solution becomes much more efficient.
+
+3. Conclusion
+
+The brute-force solution sorts all elements and has $O((m+n)\log(m+n))$ time complexity. The divide-and-conquer solution uses binary search and has $O(\log(\min(m,n)))$ time complexity, making it more efficient for large sorted arrays.
 ### Defense Interview 
 + Be ready to justify running times, for example using **Master method** for divide-and-conquer algorithms.
 + Be ready to answer questions on algorithms and your code.
